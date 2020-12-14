@@ -1,0 +1,25 @@
+menu "WebThing Empty Project"
+		
+config GPIO_A
+	int "GPIO_A: GPIO number for some purposes"
+	range 0 34
+	default 26
+	help
+		This constant will be visible for compiler as CONFIG_GPIO_A.
+		
+		Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+		GPIOs 35-39 are input-only so cannot be used to drive the led.
+
+config GPIO_B
+	int "GPIO_B: GPIO number for another purposes"
+	range 0 34
+	default 22
+	help
+		This constant will be visible for compiler as CONFIG_GPIO_B
+		
+		Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+		GPIOs 35-39 are input-only.
+
+endmenu
