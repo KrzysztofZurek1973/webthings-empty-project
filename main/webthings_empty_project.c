@@ -1,4 +1,5 @@
-/* Empty project for building webThing device
+/*
+   Empty project for building webThing device
 
    Krzysztof Zurek, krzzurek@gmail.com
    Dec 14 2020
@@ -20,7 +21,6 @@
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "mdns.h"
-//#include "esp_event_loop.h"
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
@@ -222,9 +222,7 @@ void wifi_init_sta(char *ssid, char *pass){
 
     wifi_event_group = xEventGroupCreate();
 
-    //tcpip_adapter_init(); //old version of esp-idf
     esp_netif_init();
-    //ESP_ERROR_CHECK(esp_event_loop_init(event_handler, arg) );
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     esp_netif_create_default_wifi_sta();
 
@@ -261,9 +259,11 @@ void wifi_init_sta(char *ssid, char *pass){
 
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG_WIFI, "connected to ap SSID:%s", ssid);
-    } else if (bits & WIFI_FAIL_BIT) {
+    }
+    else if (bits & WIFI_FAIL_BIT) {
         ESP_LOGI(TAG_WIFI, "Failed to connect to SSID:%s", ssid);
-    } else {
+    }
+    else {
         ESP_LOGE(TAG_WIFI, "UNEXPECTED EVENT");
     }
 
@@ -307,7 +307,7 @@ void init_nvs(void){
 		printf("errors: %i, %i, %i, \n", err1, err2, err3);
 
 		if ((err1 == ESP_OK) && (err2 == ESP_OK) && (ssid_len > 0) && (pass_len > 0)
-				&& (err3 == ESP_OK) && (mdns_len > 0)){
+			&& (err3 == ESP_OK) && (mdns_len > 0)){
 			//password and ssid is defined, connect to network and start
 			//web thing server
 			if ((ssid_len < 33) && (pass_len < 65) && (mdns_len < 65)){
@@ -317,9 +317,7 @@ void init_nvs(void){
 				wifi_ssid[ssid_len - 1] = 0;
 				wifi_pass[pass_len - 1] = 0;
 				mdns_hostname[mdns_len - 1] = 0;
-				//without printf below node failed constantly in connecting
-				//to AP! - what is it?
-				vTaskDelay(5 / portTICK_PERIOD_MS); //5ms wait solves problem temporaryly
+				vTaskDelay(10 / portTICK_PERIOD_MS);
 
 				//initialize wifi
 				wifi_init_sta(wifi_ssid, wifi_pass);

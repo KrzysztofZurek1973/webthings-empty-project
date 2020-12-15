@@ -4,6 +4,8 @@
 
 This software is prepared for ESP32 CPUs and uses esp-idf environment (current stable version: 4.1).
 
+## Build webThing Device
+
 To build webThing device follow these steps:
 
 1. download ```WebThing Empty Project```
