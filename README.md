@@ -9,14 +9,17 @@ This software is prepared for ESP32 CPUs and uses esp-idf environment (current s
 To build webThing device follow these steps:
 
 1. download ```WebThing Empty Project```
-2. in project directory create ```components``` folder
-3. into ```components``` folder download ```web_thing_server``` from [webthings-components](https://github.com/KrzysztofZurek1973/webthings-components) repository
-4. in the directory ```components``` put code of your webThing, it should have ```init_the_thing``` function which returns pointer to the webThing (see ```web_thing_server``` documentation and [wethings-node-example-project](https://github.com/KrzysztofZurek1973/webthings-node-example-project) for information about how to create webThing software)
-5. for tests (in point 3) you can download [thing_button](https://github.com/KrzysztofZurek1973/webthings-components/tree/master/thing_button) and/or [thing_blinking_led](https://github.com/KrzysztofZurek1973/webthings-components/tree/master/thing_blinking_led) into components and add things to the server using ```add_thing_to_server(init_button())``` and/or ```add_thing_to_server(init_blinking_led())```
-6. include header file (e.g. ```thing_button.h```) of your thing
-7. if necessary configure project by ```idf.py menuconfig```
-8. compile by ```idf.py build```
-9. upload into flash memory by ```idf.py flash```
+	* in ```main``` folder rename the main project code file from **```webthings_empty_project.c```** into appropriate name
+	* in ```main/CMakeLists.txt``` update **```set(COMPONENT_SRCS "webthings_empty_project.c")```** according to the new file name
+	* in ```CMakeLists.txt``` update **```project(empty_project)```** according to your project name
+1. in project directory create ```components``` folder
+1. into ```components``` folder download ```web_thing_server``` from [webthings-components](https://github.com/KrzysztofZurek1973/webthings-components) repository
+1. in the directory ```components``` put code of your webThing, it should have ```init_the_thing``` function which returns pointer (```thing_t *```)to the webThing (see ```web_thing_server``` documentation and [wethings-node-example-project](https://github.com/KrzysztofZurek1973/webthings-node-example-project) for information about how to create webThing software)
+1. for tests (in the above point) you can download [thing_button](https://github.com/KrzysztofZurek1973/webthings-components/tree/master/thing_button) and/or [thing_blinking_led](https://github.com/KrzysztofZurek1973/webthings-components/tree/master/thing_blinking_led) into components and add things to the server using ```add_thing_to_server(init_button())``` and/or ```add_thing_to_server(init_blinking_led())```
+1. include header file (e.g. ```thing_button.h```) of your thing in the main code file
+1. if necessary configure project by ```idf.py menuconfig```
+1. compile by ```idf.py build```
+1. upload into flash memory by ```idf.py flash```
 
 In order to fully use the potential of IoT, and to have access to *webThings* from the Internet, it is best to run [WebThing Gateway](https://webthings.io/gateway/) in the same WiFi network.
 
