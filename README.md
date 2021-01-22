@@ -25,7 +25,7 @@ In order to fully use the potential of IoT, and to have access to *webThings* fr
 
 ### Power-up
 
-By the first power-up the node starts in **AP** mode with SSID: ```iot-node-ap``` and password: ```htqn9Fzv```. After loggin into this WiFi network load the main page by typing in browser ```iot-node-ap.local:8080/``` (it does not work on Android) or ```192.168.4.1:8080/```.
+By the first power-up the node starts in **AP** mode with SSID: ```iot-node-ap``` and password: ```htqn9Fzv```. After logging into this WiFi network load the main page by typing in browser ```iot-node-ap.local:8080/``` (it does not work on Android) or ```192.168.4.1:8080/```.
 
 On the page write SSID and password of the WiFi network where the node will work. In the last position enter the local node's name.
 

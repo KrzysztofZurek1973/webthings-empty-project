@@ -67,6 +67,11 @@ void init_things(void);
 bool thing_server_loaded = false;
 static bool node_is_station = false;
 
+void daily_on_time_reset(void){
+	//TODO: place this function in component's code
+	//for more details see "dual-light" webThing
+}
+
 
 /***************************************************************
  *
@@ -119,6 +124,20 @@ void app_main(){
 				setenv("TZ", "CET", 1);
 				tzset();
 				time_zone_set = true;
+			}
+			
+			if (i%10 == 0){
+				int prev_day;
+				
+				prev_day = timeinfo.tm_yday;
+				time(&now);
+				localtime_r(&now, &timeinfo);
+				if (timeinfo.tm_yday != prev_day){
+					//if next day started reset daily time counters
+					//used by "dual-light", "thermostat", "led-lighting" and other
+					//devices with "On minutes" property
+					daily_on_time_reset(); //this function must be placed in component's code
+				}
 			}
 			
 			//for tests only
