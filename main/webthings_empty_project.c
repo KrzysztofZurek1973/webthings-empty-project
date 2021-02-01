@@ -2,7 +2,7 @@
    Empty project for building webThing device
 
    Krzysztof Zurek, krzzurek@gmail.com
-   Dec 14 2020
+   Feb 01 2021
    MIT licence
 */
 #include <stdio.h>
@@ -93,13 +93,13 @@ void app_main(){
 		err = nvs_flash_init();
 	}
 	ESP_ERROR_CHECK( err );
-
+	
 	//chip information
 	chipInfo();
 	gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
 	init_reset_button();
 	
-	//initialize things, properties etc.
+	//initialize webThings
 	init_things();
 
 	init_nvs();
@@ -149,6 +149,7 @@ void app_main(){
 				printf("%s, free heap: %i\n", time_buffer, heap);
 				prev_heap = heap;
 			}
+			//end of test
 		}
 	}
 

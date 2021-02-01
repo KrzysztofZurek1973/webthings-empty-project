@@ -14,7 +14,7 @@ To build webThing device follow these steps:
 	* in ```CMakeLists.txt``` update **```project(empty_project)```** according to your project name
 1. in project directory create ```components``` folder
 1. into ```components``` folder download ```web_thing_server``` from [webthings-components](https://github.com/KrzysztofZurek1973/webthings-components) repository
-1. in the directory ```components``` put code of your webThing, it should have ```init_the_thing``` function which returns pointer (```thing_t *```)to the webThing (see ```web_thing_server``` documentation and [wethings-node-example-project](https://github.com/KrzysztofZurek1973/webthings-node-example-project) for information about how to create webThing software)
+1. in the directory ```components``` put code of your webThing, it should have ```init_the_thing``` function which returns pointer (```thing_t *```) to the webThing (see ```web_thing_server``` documentation and [wethings-node-example-project](https://github.com/KrzysztofZurek1973/webthings-node-example-project) for information about how to create webThing software)
 1. for tests (in the above point) you can download [thing_button](https://github.com/KrzysztofZurek1973/webthings-components/tree/master/thing_button) and/or [thing_blinking_led](https://github.com/KrzysztofZurek1973/webthings-components/tree/master/thing_blinking_led) into components and add things to the server using ```add_thing_to_server(init_button())``` and/or ```add_thing_to_server(init_blinking_led())```
 1. include header file (e.g. ```thing_button.h```) of your thing in the main code file
 1. if necessary configure project by ```idf.py menuconfig```
@@ -25,13 +25,13 @@ In order to fully use the potential of IoT, and to have access to *webThings* fr
 
 ### Power-up
 
-By the first power-up the node starts in **AP** mode with SSID: ```iot-node-ap``` and password: ```htqn9Fzv```. After logging into this WiFi network load the main page by typing in browser ```iot-node-ap.local:8080/``` (it does not work on Android) or ```192.168.4.1:8080/```.
+By the first power-up the node starts in **AP** mode with SSID: **iot-node-ap** and password: **htqn9Fzv**. After logging into this WiFi network load the main page by typing in browser ```iot-node-ap.local:8080/``` (it does not work on Android) or ```192.168.4.1:8080/```.
 
 On the page write SSID and password of the WiFi network where the node will work. In the last position enter the local node's name.
 
 Pressing *submit* causes writing data into flash and restart of the node in *station* mode. If you want to change the WiFi SSID or password later just connect ```GPIO27``` to GND, this causes node's restart in **AP** mode as in the previous paragraph.
 
-If *WebThing Gateway* runs in the same WiFi network go to *Things* category on gateway and press *plus* sign. Gateway shoud find new things, press *Save* and *Done*.
+If *WebThings Gateway* runs in the same WiFi network go to *Things* category on gateway and press *plus* sign. Gateway shoud find new things, press *Save* and *Done*.
 
 Now you have 2 new things in your IoT network and you can control them from anywhere you are.
 
@@ -51,7 +51,7 @@ In the main loop information about free heap memory is sent every 2 seconds on s
 
 *Web Thing Server* starts running after event ```IP_EVENT_STA_GOT_IP```. Server runs on port 8080  (more information in *Web Thing Server* documentation).
 
-After that the sntp client (```init_sntp```) is started.
+After that the SNTP client (```init_sntp```) is started.
 
 ### Project Configuration
 
